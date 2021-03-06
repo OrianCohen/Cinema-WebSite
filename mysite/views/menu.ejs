@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MENU PAGE</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Menu Page</h1>
+    <form action="/movies">    
+    <button type="text">Movies</button>
+    </form>
+    <form action="/subscriptions">
+    <button type="text">Subscriptions</button>
+    </form>
+  <form action="/manageusers">
+
+    <% if(data == true) { %>
+      <button type="text">User Management</button>
+    <% } %>
+  </form>
+
+  <form action="/logout">
+  <button type="text">Log Out</button>
+  </form>
+
+
+  </body>
+</html>

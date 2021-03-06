@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <style>
+          div {
+              width: auto;
+              padding:3rem;
+              border: 5px solid gray;
+              margin: 0;
+          }
+      </style>
+    <title>All Users PAGE</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+  <body>
+    <h1>All Users Page</h1>
+
+ 
+        <% datax.forEach(function(elem) { %>
+        <div>
+            Name: <%= elem.firstname %> <%= elem.lastname %> </br>
+            Session time out (Minutes): <%= elem.sessiontimeout %> </br>
+            Created Date: <%= elem.creatdData %> </br> </br>
+
+            <form action="/manageUsers">
+                <button type="submit">Edit</button>
+              </form>
+              <form action="/manageUsers">
+                <button type="submit">Delete</button>
+              </form>
+         </div>
+
+    <% }); %>
+
+
+
+  </body>
+</html>
