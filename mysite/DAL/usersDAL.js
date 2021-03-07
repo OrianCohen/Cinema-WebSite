@@ -1,7 +1,7 @@
 let jfile = require('jsonfile')
 
 
-exports.getAllUsers = function(){
+const getAllUsers = function(){
     return new Promise((result,reject)=>
     {
         jfile.readFile(__dirname +'/users.json',function(err,data){
@@ -17,7 +17,7 @@ exports.getAllUsers = function(){
 }
 
 
-exports.createNewUser = function(obj){
+const createNewUser = function(obj){
     return new Promise((result,reject) => {
         jfile.readFile(__dirname + '/users.json', function(err,data){
             if(data){ // we will add the user to our json file
@@ -34,7 +34,7 @@ exports.createNewUser = function(obj){
 }
 
 
-exports.deleteUserJSON = async function(obj){
+const deleteUserJSON = async function(obj){
     return new Promise((result,reject) => {
         jfile.writeFile(__dirname + '/users.json', obj, function(err){
             if(err){
@@ -47,7 +47,7 @@ exports.deleteUserJSON = async function(obj){
     })
 }
 
-exports.updateUserJSON = async function(obj,allExceptOne){
+const updateUserJSON = async function(obj,allExceptOne){
     return new Promise((result,reject) => {
         allExceptOne.users.push(obj)
         jfile.writeFile(__dirname + '/users.json', allExceptOne, function(err){
@@ -60,3 +60,5 @@ exports.updateUserJSON = async function(obj,allExceptOne){
         })
     })
 }
+
+module.exports = {updateUserJSON,deleteUserJSON, createNewUser, getAllUsers}

@@ -17,7 +17,7 @@ let results = await usrBL.validUser(user,password)
 
 try{
   if(results[0].userName == user){
-    //TODO add user popup user EXISTS
+    //TODO add user popup message user EXISTS
     res.render('createUser', {})
   }
 }
@@ -26,7 +26,7 @@ catch(err){
   let addUserDB = await usrBL.createUser(req.body)
 
   //TODO add full user details to users.json
-  //TODO add user popup user created sucssfully 
+  //TODO add popup message on screen "user created sucssfully"
   if(addUserDB == 'created!'){
     res.redirect('/login')
   }

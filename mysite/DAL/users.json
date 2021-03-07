@@ -1,8 +1,3 @@
-{"users":
-    [
-        {"id":"60439b581b6cd95b80db36d1","firstname":"Idan","lastname":"cohen","creatdData":"21y-03-03 8:56:01","isAdmin":true, "sessiontimeout":60},
-        {"id":"60439f43e180e01fdc734f6b","firstname":"Orian","lastname":"Youhannuf","createData":"21y-03-03 7:44:33","isAdmin":false, "sessiontimeout":15}
-
-    ]
-    
-}
+{"users":[{"id":"60439f43e180e01fdc734f6b","firstname":"Orian","lastname":"Youhannuf","creatdDate":"21y-03-03 8:56:01","isAdmin":false,"sessiontimeout":15},
+    {"id":"60439b581b6cd95b80db36d1","firstname":"Idan","lastname":"cohen","creatdDate":"21y-03-07 9:03:27","isAdmin":true,"sessiontimeout":"75"},
+    {"id":"604558eb7fae44669ce8f200","firstname":"Koral","lastname":"Service","creatdDate":"21y-03-08 12:51:23","isAdmin":false,"sessiontimeout":"75"}]}

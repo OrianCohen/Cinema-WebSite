@@ -12,25 +12,30 @@ const movieToDB = async function(){
                 }
                 else{
                     //If we dont have data in DB
-                    
-                        let moviesData = await moviesAPI.getAllMoviesAPI();                
-                        moviesData.data.forEach(element => {
-                            let newMovie = new moviesModel({
-                                id: element.id,
-                                name: element.name,
-                                genres: element.genres,
-                                image: element.image,
-                                premiered : element.premiered
-                            })
-                            newMovie.save(function(err){
-                                if(err){
-                                    reject(err)
-                                }
-                                else{
-                                    result(movies)
-                                }
-                            })
-                        });
+                        if(movies.length == 0){
+                            let moviesData = await moviesAPI.getAllMoviesAPI();                
+                            moviesData.data.forEach(element => {
+                                let newMovie = new moviesModel({
+                                    id: element.id,
+                                    name: element.name,
+                                    genres: element.genres,
+                                    image: element.image,
+                                    premiered : element.premiered
+                                })
+                                newMovie.save(function(err){
+                                    if(err){
+                                        reject(err)
+                                    }
+                                    else{
+                                        result(movies)
+                                    }
+                                })
+                            });
+                        }
+                        else{
+                            result(movies)
+                        }
+
                     
                 }
             })

@@ -37,6 +37,7 @@ router.post('/getLoginData', async function(req, res, next){
     }
     catch(err){
         console.log(err)
+        //TODO need to pop
         res.redirect('/login')
     }
 });

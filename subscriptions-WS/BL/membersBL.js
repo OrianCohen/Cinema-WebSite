@@ -11,8 +11,7 @@ const membersToDB = function(){
                 reject(err)
             }
             else {
-                //TODO I need to fix the double written to DB 
-                if(membersModel.length){
+                if(members.length == 0){
                     let membersData = await membersAPI.getAllMembersAPI()
                     membersData.data.forEach(element => {
                         let data = new membersModel({

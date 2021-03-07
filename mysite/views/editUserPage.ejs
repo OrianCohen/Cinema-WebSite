@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EDIT USER PAGE</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+      <h1>Users</h1>
+    <h2>Edit User: <%= data.firstname%> <%= data.lastname%> </h2>
+    <form action="/manageUsers/userEdited/<%= data.id%>" method="POST">
+    ID: <%=data.id%> <br/>
+    First Name: <input type="text" name="fname" value="<%= data.firstname%>"><br/>
+    Last Name: <input type="text" name="lname" value="<%= data.lastname%>"><br/>
+    Create Date: <%= data.creatdDate %>
+    Session Time Out: <input type="text" name="sesstime" value="<%= data.sessiontimeout%>"><br/>
+    Permissions: </br>
+    <input type="checkbox" name="permissions">View Subscriptions <br/>
+    <input type="checkbox" name="permissions">Create Subscriptions<br/>
+    <input type="checkbox" name="permissions">Delete Subscriptions<br/>
+    <input type="checkbox" name="permissions">Update Subscriptions<br/>
+    <input type="checkbox" name="permissions">View Movies<br/>
+    <input type="checkbox" name="permissions">Create Movies<br/>
+    <input type="checkbox" name="permissions">Delete Movies<br/>
+    <input type="checkbox" name="permissions">Update Movies<br/> <br/>
+
+
+    <input type="submit"value="Update"> </form> <form action="/manageUsers/geAllusers"><input type="submit" value="Cancel"></form><br/>
+    
+
+  </body>
+</html>

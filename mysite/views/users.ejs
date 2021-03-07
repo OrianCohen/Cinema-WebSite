@@ -23,10 +23,10 @@
             Session time out (Minutes): <%= elem.sessiontimeout %> </br>
             Created Date: <%= elem.creatdData %> </br> </br>
 
-            <form action="/manageUsers">
+            <form action="/manageUsers/editUser/<%= elem.id%>" method="POST">
                 <button type="submit">Edit</button>
               </form>
-              <form action="/manageUsers">
+              <form action="/manageUsers/deleteUser/<%= elem.id%>">
                 <button type="submit">Delete</button>
               </form>
          </div>
