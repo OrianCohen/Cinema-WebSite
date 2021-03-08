@@ -1,9 +1,9 @@
 var subAPI = require('../DAL/RestAPI')
 
-const getAllMembersData = async function(){
+const getAllMembersDataREST = async function(){
     let membersData = await subAPI.getAllMembersRESTAPI()
     return(membersData)
 }
 
 
-module.exports = {getAllMembersData}
+module.exports = {getAllMembersDataREST}

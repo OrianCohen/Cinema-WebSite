@@ -15,7 +15,6 @@ const membersToDB = function(){
                     let membersData = await membersAPI.getAllMembersAPI()
                     membersData.data.forEach(element => {
                         let data = new membersModel({
-                            id: element.id,
                             name: element.name,
                             email: element.email,
                             city: element.city
@@ -38,4 +37,43 @@ const membersToDB = function(){
     })
 }
 
-module.exports = {membersToDB}
+const getAllMembers = function(){
+    return new Promise((result,reject)=>{
+        membersModel.find({}, function(err,data){
+            if(err){
+                reject(err)
+            }
+            else{
+                result(data)
+            }
+        })
+    })
+}
+
+const getMemberByID = function(id){
+    return new Promise((result,reject)=>{
+        membersModel.findById(id, function(err,data){
+            if(err){
+                reject(err)
+            }
+            else{
+                result(data)
+            }
+        })
+    })
+}
+
+const deleteMember = function(id){
+    return new Promise((result,reject)=>{
+        membersModel.findByIdAndDelete(id, function(err){
+            if(err){
+                reject(err)
+            }
+            else{
+                result('deleted!')
+            }
+        })
+    })
+}
+
+module.exports = {membersToDB, getAllMembers, getMemberByID, deleteMember}

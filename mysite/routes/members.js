@@ -3,11 +3,10 @@ const { response } = require('../app');
 var router = express.Router();
 const membersBL = require("../BL/membersBL")
 
-/* GET all members from web serivce "subscriptions-WS". */
+/* GET movies listing. */
 router.get('/', async function(req, res) {
-
-  let members = await membersBL.getAllMembersData()
-  return res.json(members.data)
+  let movies = await moviesBL.getAllMembersDataREST()
+  return res.json(movies.data)
 });
 
 module.exports = router;

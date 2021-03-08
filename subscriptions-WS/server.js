@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 require('./config/database')
-
 var moviesRouter = require('./routes/movies');
 var membersRouter = require('./routes/members');
 

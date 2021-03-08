@@ -1,11 +1,11 @@
-const users = require('../models/usersModel')
+const usersModel = require('../models/usersModel')
 const userDAL = require('../DAL/usersDAL')
 var dateFormat = require('dateformat');
 
 //Get all user data from usersDB
 const validUser = function(user,pass){
     return new Promise ((result,reject)=>{
-        users.find({}, function(err,allUsers){
+        usersModel.find({}, function(err,allUsers){
             if(err){
                 reject(err)
             }
@@ -20,7 +20,7 @@ const validUser = function(user,pass){
 //Check if there is username exist in our userDB
 const validByUserName = function(user){
     return new Promise ((result,reject)=>{
-        users.find({}, function(err,allUsers){
+        usersModel.find({}, function(err,allUsers){
             if(err){
                 reject(err)
             }
@@ -36,12 +36,12 @@ const validByUserName = function(user){
 //Find user by id from usersDB
 const userById = function(id){
     return new Promise ((result,reject)=>{
-        users.findById(id, function(err,allUsers){
+        usersModel.findById(id, function(err,user){
             if(err){
                 reject(err)
             }
             else{
-                result(valid)
+                result(user)
             }
         })
     })
@@ -50,7 +50,7 @@ const userById = function(id){
 //Add new user to usersDB
 const createUserToDB = function(obj){
     return new Promise ((result,reject)=>{
-        const newUser = new users({
+        const newUser = new usersModel({
             userName: obj.username,
             password: obj.pwd
         })
@@ -65,6 +65,41 @@ const createUserToDB = function(obj){
     })
 }
 
+
+//Update existing user from usersDB
+const updateUserToDB = function(id,obj){
+    return new Promise ((result,reject)=>{
+        usersModel.findByIdAndUpdate(id,
+            {
+                userName: obj.username,
+                password: obj.pwd
+            },
+            function(err){
+                if(err){
+                    reject(err)
+                }
+                else{
+                    result('updated!')
+                }
+            }
+            )
+    })
+}
+
+
+//Delete existing user from usersDB
+    const deleteUser = function(id){
+        return new Promise((result,reject)=>{
+            usersModel.findByIdAndDelete(id, function(err){
+                if(err){
+                    reject(err)
+                }
+                else{
+                    result('deleted!')
+                }
+            })
+        })
+    }
 
 //Edit existing usr to users.json
 //The main idea of this function, is to get all users from our data, take out the one we need to update,
@@ -118,4 +153,4 @@ const AddNewUser = async function(obj,id){
 }
 
 
-module.exports = {validUser, createUserToDB, userById,getUserById ,getAllUsersDataJSON, editUserJSON, AddNewUser, validByUserName}
+module.exports = {validUser, createUserToDB, userById,getUserById ,getAllUsersDataJSON, editUserJSON, AddNewUser, validByUserName, updateUserToDB, deleteUser}

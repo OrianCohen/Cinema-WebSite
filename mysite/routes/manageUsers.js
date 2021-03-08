@@ -88,7 +88,7 @@ router.post('/newUserData', async function(req, res) {
 
 
 //Will redirect to edit user page, user admin can change details on this page
-router.post('/editUser/:id', async function(req, res) {
+router.get('/editUser/:id', async function(req, res) {
   let id = req.params.id
   let user = await userBL.getUserById(id)
   let sess = req.session;

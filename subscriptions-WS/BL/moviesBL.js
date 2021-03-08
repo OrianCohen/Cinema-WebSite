@@ -16,7 +16,6 @@ const movieToDB = async function(){
                             let moviesData = await moviesAPI.getAllMoviesAPI();                
                             moviesData.data.forEach(element => {
                                 let newMovie = new moviesModel({
-                                    id: element.id,
                                     name: element.name,
                                     genres: element.genres,
                                     image: element.image,
@@ -42,7 +41,47 @@ const movieToDB = async function(){
     });
 }
 
+//Get all movies from DB
+const getAllMovies = function(){
+    return new Promise((result,reject)=>{
+        moviesModel.find({}, function(err,data){
+            if(err){
+                reject(err)
+            }
+            else{
+                result(data)
+            }
+        })
+    })
+}
+
+const getMovieByID = function(id){
+    return new Promise((result,reject)=>{
+        moviesModel.findById(id, function(err,data){
+            if(err){
+                reject(err)
+            }
+            else{
+                result(data)
+            }
+        })
+    })
+}
 
 
-module.exports = {movieToDB}
+const deleteMovie = function(id){
+    return new Promise((result,reject)=>{
+        moviesModel.findByIdAndDelete(id, function(err){
+            if(err){
+                reject(err)
+            }
+            else{
+                result('deleted!')
+            }
+        })
+    })
+}
+
+
+module.exports = {movieToDB, getAllMovies, getMovieByID, deleteMovie}
 
