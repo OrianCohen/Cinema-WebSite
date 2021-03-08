@@ -12,11 +12,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var menuRouter = require('./routes/menu');
-var moviesRouter = require('./routes/movies');
 var subscriptionsRouter = require('./routes/subscriptions');
 var manageUsersRouter = require('./routes/manageUsers');
 var logoutRouter = require('./routes/logout');
-var membersRouter = require('./routes/members');
+var membersRouter = require('./routes/membersREST');
+var moviesRouter = require('./routes/moviesREST');
 
 var app = express();
 
@@ -35,11 +35,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/menu', menuRouter);
-app.use('/movies', moviesRouter);
 app.use('/subscriptions', subscriptionsRouter);
 app.use('/manageusers', manageUsersRouter);
 app.use('/logout', logoutRouter);
-app.use('/members', membersRouter);
+
+app.use('/api/movies', moviesRouter);
+app.use('/api/members', membersRouter);
 
 logoutRouter
 // catch 404 and forward to error handler

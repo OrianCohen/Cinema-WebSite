@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ADD NEW USER PAGE</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Add New User </h1>
+    <form action="/manageUsers/newUserData" method="POST">
+    First Name: <input type="text" name="fname"><br/>
+    Last Name: <input type="text" name="lname"><br/>
+    User Name: <input type="text" name="username"><br/>
+    Password: <input type="text" name="pwd"><br/>
+    Session Time Out (Minutes): <input type="text" name="sesstime""><br/>
+    Permissions: </br>
+    <input type="checkbox" name="viewsub">View Subscriptions <br/>
+    <input type="checkbox" name="createsub">Create Subscriptions<br/>
+    <input type="checkbox" name="deletesub">Delete Subscriptions<br/>
+    <input type="checkbox" name="updatesub">Update Subscriptions<br/>
+    <input type="checkbox" name="viewmo">View Movies<br/>
+    <input type="checkbox" name="createmo">Create Movies<br/>
+    <input type="checkbox" name="deletemo">Delete Movies<br/>
+    <input type="checkbox" name="updatmo">Update Movies<br/> <br/>
+
+
+    <input type="submit"value="Save"> </form> <form action="/manageUsers"><input type="submit" value="Cancel"></form><br/>
+    
+
+  </body>
+</html>

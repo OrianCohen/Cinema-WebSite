@@ -2,6 +2,7 @@ const usersModel = require('../models/usersModel')
 const userDAL = require('../DAL/usersDAL')
 var dateFormat = require('dateformat');
 
+
 //Get all user data from usersDB
 const validUser = function(user,pass){
     return new Promise ((result,reject)=>{
@@ -104,13 +105,10 @@ const updateUserToDB = function(id,obj){
 //Edit existing usr to users.json
 //The main idea of this function, is to get all users from our data, take out the one we need to update,
 const editUserJSON = async function(obj, id){
-        
     let allUsersData = await userDAL.getAllUsers();
     let userBeforeChange = await allUsersData.filter(x=>x.id == id)
-    console.log('user before' + userBeforeChange[0].creatdData)
     let allExceptOne = await allUsersData.filter(x=>x.id != id)
-    let currentDate = dateFormat(new Date(), "yyy-mm-dd h:MM:ss");
-    console.log('all users expt one inside user bl ' + allExceptOne)
+    let currentDate = dateFormat(new Date(), "yyy-mm-dd");
     let userData = {
         id: id,
         firstname: obj.fname,
@@ -139,7 +137,7 @@ const getUserById = async function(id){
 }
 
 const AddNewUser = async function(obj,id){
-    let currentDate = dateFormat(new Date(), "yyy-mm-dd h:MM:ss");
+    let currentDate = dateFormat(new Date(), "yyy-mm-dd");
     let newUser = {
         id: id,
         firstname: obj.fname,
@@ -152,5 +150,13 @@ const AddNewUser = async function(obj,id){
     return allUsers
 }
 
+const deleteUserFromJSON = async function(id){
+    let usersData = await userDAL.getAllUsers();
+    let allUsers = await usersData.filter(x=> x.id != id)
+    let d = {users : allUsers}
+    let result = await userDAL.deleteUserJSON(d);
+    return result;
+}
 
-module.exports = {validUser, createUserToDB, userById,getUserById ,getAllUsersDataJSON, editUserJSON, AddNewUser, validByUserName, updateUserToDB, deleteUser}
+
+module.exports = {deleteUserFromJSON,validUser, createUserToDB, userById,getUserById ,getAllUsersDataJSON, editUserJSON, AddNewUser, validByUserName, updateUserToDB, deleteUser}

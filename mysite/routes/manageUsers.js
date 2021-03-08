@@ -3,7 +3,7 @@ var router = express.Router();
 var userBL = require('../BL/usersBL')
 var permiBL = require('../BL/permissionsBL')
 
-/* GET users listing. */
+/* user manamgement main page. */
 router.get('/', function(req, res) {
   let sess = req.session;
   if(sess.auth){
@@ -52,9 +52,10 @@ router.post('/newUserData', async function(req, res) {
     //If it is true -> means we have same username in the system need to pop up message username exist!
     if(checkUsername[0])
     {
-      
+      //username exists need to pop up message and redirect to add user page
+      res.redirect('/manageUsers/addUser')
     }  
-    //If not true - username does not exist in usersDB we can add new user to usersDB, users.json, permissions.json
+    //If not - username does not exist in usersDB we can add new user to usersDB, users.json, permissions.json
     else
     {
       //Add user to usersDB
@@ -69,6 +70,7 @@ router.post('/newUserData', async function(req, res) {
             let addPerToJson = await permiBL.addNewPermissionJSON(req.body, id) 
             if(addPerToJson =='Added!' && addUserToJson =='Added!'){
                 //user created and added successfully to db & json's
+                //TODO pop up succsfully user added!
                 res.redirect('/manageUsers/')
             }
           }
@@ -119,5 +121,21 @@ router.post('/userEdited/:id', async function(req, res) {
       res.redirect('/login')
   }
 });
+
+router.get('/deleteUser/:id', async function(req, res){
+  let id = req.params.id
+
+  let deleteFromDB = await userBL.deleteUser(id)
+  let deleteFromUsersJson = await userBL.deleteUserFromJSON(id)
+  let deleteFromPerJson = await permiBL.deletePermissionByIdJSON(id)
+
+  if(deleteFromPerJson =='deleted!' && deleteFromUsersJson =='deleted!' && deleteFromDB =='deleted!'){
+    res.redirect('/manageUsers/geAllusers')
+  }
+  else{
+    res.redirect('/manageUsers')
+  }
+
+})
 
 module.exports = router;
