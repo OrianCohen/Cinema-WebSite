@@ -15,8 +15,10 @@ var menuRouter = require('./routes/menu');
 var subscriptionsRouter = require('./routes/subscriptions');
 var manageUsersRouter = require('./routes/manageUsers');
 var logoutRouter = require('./routes/logout');
-var membersRouter = require('./routes/membersREST');
-var moviesRouter = require('./routes/moviesREST');
+var moviesRouter = require('./routes/movies');
+
+var restAPIRouter = require('./routes/restAPI');
+
 
 var app = express();
 
@@ -38,9 +40,9 @@ app.use('/menu', menuRouter);
 app.use('/subscriptions', subscriptionsRouter);
 app.use('/manageusers', manageUsersRouter);
 app.use('/logout', logoutRouter);
+app.use('/movies', moviesRouter);
+app.use('/api', restAPIRouter);
 
-app.use('/api/movies', moviesRouter);
-app.use('/api/members', membersRouter);
 
 logoutRouter
 // catch 404 and forward to error handler
